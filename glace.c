@@ -30,10 +30,21 @@ int sig_inx = 0;
 
 int inx = 0;
 
+
+/*
+                      _
+      _ __ ___   __ _(_)_ __
+     | '_ ` _ \ / _` | | '_ \
+     | | | | | | (_| | | | | |
+     |_| |_| |_|\__,_|_|_| |_|
+
+ */
+
+
 int main (int argc, char *argv[]) {
 
     if (argc < 2) {
-       printf("Specify Glade file as argument\n");
+       printf("use:\n./glace gladefile [xml]\n");
        exit(EXIT_FAILURE);
     } else {
         strcpy(gladefile, argv[1]);
@@ -130,7 +141,7 @@ int main(int argc, char *argv[]) {\n\
         }
     }
 
-    replace(code2, code2, "XXXXXX", gladefile, 1);
+    replace(code2, code2, "XXXXXX", gladefile, 0, 1);
     puts(code2);
 
     // Print the global type assertions
@@ -168,7 +179,7 @@ void xml2string() {
         fgets(line, 1024, fh);
         if (feof(fh)) break;
         trim(line);
-        replace(line, line, "\"", "\\\"", 0);
+        replace(line, line, "\"", "\\\"", 0, 0);
         strcat(line, "\\n\\");
         printf("%s\n", line);
     }
